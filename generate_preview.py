@@ -9,8 +9,10 @@ def main():
         fname = sys.argv[1]
     pil_image_lst = convert_from_path(fname) # This returns a list even for a 1 page pdf
     first_page = pil_image_lst[0]
+    num_pages = len(pil_image_lst)
+    num_rows = (num_pages + 3) // 4
     canvas_width = first_page.width * 4
-    canvas_height = first_page.height * (len(pil_image_lst) // 4 + 1)
+    canvas_height = first_page.height * num_rows
     canvas = Image.new('RGB', (canvas_width, canvas_height), (255, 255, 255))
     
     for i, page in enumerate(pil_image_lst):
